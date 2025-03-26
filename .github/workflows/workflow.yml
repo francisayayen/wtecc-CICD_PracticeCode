@@ -1,0 +1,12 @@
+name: CI workflow
+
+on:
+  push: # Run the workflow on every push to the main branch
+    branches: [ "main" ]
+  pull_request: # Run the workflow whenever a pull request is created to the main branch.
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: python:3.9-slim
