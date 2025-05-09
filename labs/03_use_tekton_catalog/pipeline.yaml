@@ -4,7 +4,7 @@ metadata:
   name: cd-pipeline
 spec:
   workspaces: 
-    name: pipeline-workspace
+    - name: pipeline-workspace
   params:
     - name: repo-url
     - name: branch
