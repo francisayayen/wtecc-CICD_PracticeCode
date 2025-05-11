@@ -23,6 +23,7 @@ spec:
     - name: repo-url
     - name: branch
       default: master
+      
   tasks:
     - name: clone
       taskRef:
@@ -32,6 +33,7 @@ spec:
         value: "$(params.repo-url)"
       - name: branch
         value: "$(params.branch)"
+        
     - name: lint
       taskRef:
         name: echo
