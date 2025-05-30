@@ -18,10 +18,25 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       - name: Lint with flake8
+      # --count : shows the count of all warnings and errors in the result of the command
+      # --select=E9,F63,F7,F82 : limits the checks to syntax errors
+      # --show-source : adds the actual line number where the error/warning is found
+      # --statistics : shows the count of each type of error and warning in the result
+
+      # service :  The directory or module being analyzed (e.g., ./service/).
+      # --max-complexity=10 : Enables the McCabe complexity checker and sets a threshold (default is -1, meaning disabled).
+      #                       A complexity >10 suggests the function is too complex (may need refactoring).
+      # --max-line-length=127 : Overrides PEP 8’s default line length (79 chars) to 127 chars. Useful for teams adopting longer line limits.
+
         run: |
           flake8 service --count --select=E9,F63,F7,F82 --show-source --statistics
           flake8 service --count --max-complexity=10 --max-line-length=127 --statistics
 
       - name: Run unit tests with nose
+      # -v  :  verbose mode Shows detailed output for each test (names, pass/fail status).
+      # --with-spec  : displays tests in a hierarchical "spec" format (like RSpec in Ruby), making output more readable.
+      # --spec-color : adds color to the spec-style output (green for passes, red for failures).
+      # --with-coverage : enables code coverage analysis (requires coverage package).
+      # --cover-package=app  : limits coverage analysis to the app package (ignores other code).
         run: nosetests -v --with-spec --spec-color --with-coverage --cover-package=app
 
